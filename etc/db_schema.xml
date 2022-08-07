@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- System Configuration -->
+    <table name="erp_sync_configuration" resource="default" engine="innodb" comment="Sync Configuration">
+        <column xsi:type="int" name="id" padding="6" unsigned="true" nullable="false" identity="true" comment="ID" />
+        <column xsi:type="varchar" name="table_name" nullable="false" length="25" comment="Table Name" />
+        <column xsi:type="smallint" name="synced_from" padding="6" unsigned="false" nullable="false" comment="Synced From" />
+        <column xsi:type="smallint" name="synced_to" padding="6" unsigned="false" nullable="false" comment="Synced To" />
+        <column xsi:type="smallint" name="total_rows" padding="6" unsigned="false" nullable="false" comment="Total Rows" />
+        <column xsi:type="smallint" name="website_id" padding="6" unsigned="true" nullable="false" comment="Website ID" />
+        <column name="sync_time" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column name="modified_date" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column name="updated_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id" />
+        </constraint>
+    </table>
+    <!-- End -->
+    <!-- MST_Product_Master-->
+    <table name="erp_product_master" resource="default" engine="innodb" comment="MST Product Master">
+        <column xsi:type="int" name="product_id" padding="6" unsigned="true" nullable="false" identity="true" comment="ID" />
+        <column xsi:type="varchar" name="barcode" nullable="false" length="30" comment="Barcode" />
+        <column xsi:type="varchar" name="item_desc_english" nullable="false" length="60" comment="item description english" />
+        <column xsi:type="varchar" name="item_desc_french" nullable="false" length="60" comment="item description french" />
+        <column xsi:type="varchar" name="desc_english" nullable="false" length="60" comment="description english" />
+        <column xsi:type="varchar" name="desc_french" nullable="false" length="60" comment="description french" />
+        <column xsi:type="varchar" name="prod_title_eng" nullable="false" length="60" comment="Product Title English" />
+        <column xsi:type="varchar" name="prod_title_fre" nullable="false" length="60" comment="Product Title French" />
+        <column xsi:type="varchar" name="brand_id" nullable="false" length="10" comment="Brand ID" />
+        <column xsi:type="varchar" name="category_id" nullable="false" length="4" comment="Category ID" />
+        <column xsi:type="varchar" name="taxable" nullable="false" length="1" comment="Taxable" />
+        <column xsi:type="int" name="tax" nullable="true" comment="Tax" />
+        <column xsi:type="varchar" name="city" nullable="false" length="100" comment="City" />
+        <column xsi:type="datetime" name="dt_mod_date" nullable="false" on_update="false"/>
+        <column xsi:type="varchar" name="vc_item_code" nullable="false" length="30" comment="VC Item Code" />
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column name="modified_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column xsi:type="varchar" name="modified_by" nullable="false" length="7" comment="Modified By" />
+        <column xsi:type="datetime" name="sync_date" nullable="false" on_update="false"/>
+        <column xsi:type="int" name="sync_status" nullable="true" comment="Sync Status" />
+        <column xsi:type="int" name="store_id" nullable="true" comment="Store ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="product_id" />
+        </constraint>
+    </table>
+    <!-- End -->
+    <!-- MST_Category_Master-->
+    <table name="erp_category_master" resource="default" engine="innodb" comment="MST Category Master">
+        <column xsi:type="int" name="category_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Category ID" />
+        <column xsi:type="varchar" name="group_dec_english" nullable="false" length="50" comment="Group description english" />
+        <column xsi:type="varchar" name="group_dec_french" nullable="false" length="50" comment="Group description french" />
+        <column xsi:type="varchar" name="desc_english" nullable="false" length="50" comment="description english" />
+        <column xsi:type="varchar" name="desc_french" nullable="false" length="50" comment="description french" />
+        <column xsi:type="datetime" name="dt_mod_date" nullable="false" on_update="false"/>
+        <column xsi:type="varchar" name="mst_category_id" nullable="false" length="4" comment="MST Category ID" />
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column name="modified_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column xsi:type="varchar" name="modified_by" nullable="false" length="7" comment="Modified By" />
+        <column xsi:type="datetime" name="sync_date" nullable="false" on_update="false"/>
+        <column xsi:type="int" name="sync_status" nullable="true" comment="Sync Status" />
+        <column xsi:type="int" name="store_id" nullable="true" comment="Store ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="category_id" />
+        </constraint>
+    </table>
+    <!-- End -->
+    <!-- MST_Brand_Master-->
+    <table name="erp_brand_master" resource="default" engine="innodb" comment="MST Brand Master">
+        <column xsi:type="int" name="brand_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Brand Id" />
+        <column xsi:type="varchar" name="desc_french" nullable="false" length="50" comment="description french" />
+        <column xsi:type="datetime" name="dt_mod_date" nullable="false" on_update="false"/>
+        <column xsi:type="varchar" name="brand_dec_english" nullable="false" length="50" comment="Brand description english" />
+        <column xsi:type="varchar" name="brand_dec_french" nullable="false" length="50" comment="Brand description french" />
+        <column xsi:type="varchar" name="desc_english" nullable="false" length="50" comment="description english" />
+        <column xsi:type="varchar" name="mst_brand_id" nullable="false" length="4" comment="MST Brand ID" />
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column name="modified_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column xsi:type="varchar" name="modified_by" nullable="false" length="7" comment="Modified By" />
+        <column xsi:type="datetime" name="sync_date" nullable="false" on_update="false"/>
+        <column xsi:type="int" name="sync_status" nullable="true" comment="Sync Status" />
+        <column xsi:type="int" name="store_id" nullable="true" comment="Store ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="brand_id" />
+        </constraint>
+    </table>
+    <!-- End -->
+    <!-- MST_Price_Master-->
+    <table name="erp_price_master" resource="default" engine="innodb" comment="MST Price Master">
+        <column xsi:type="int" name="price_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Price ID" />
+        <column xsi:type="varchar" name="vc_item_code" nullable="false" length="30" comment="VC_ITEM_CODE" />
+        <column xsi:type="varchar" name="vc_bar_code" nullable="false" length="30" comment="VC_BAR_CODE" />
+        <column xsi:type="float" name="nu_price" nullable="false" comment="NU_PRICE" />
+        <column xsi:type="float" name="nu_disc_price" nullable="false" comment="NU_DISC_PRICE" />
+        <column xsi:type="int" name="nu_currency_code" nullable="false" comment="NU_CURRENCY_CODE" />
+        <column xsi:type="int" name="nu_qty" nullable="false" comment="NU_QTY" />
+        <column xsi:type="varchar" name="city" nullable="false" length="4" comment="City" />
+        <column xsi:type="varchar" name="vc_time" nullable="false" length="8" comment="VC_TIME" />
+        <column xsi:type="datetime" name="dt_mod_date" nullable="false" on_update="false"/>
+        <column xsi:type="varchar" name="vc_comp_code" nullable="false" length="2" comment="VC_COMP_CODE" />
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column name="modified_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column xsi:type="varchar" name="modified_by" nullable="false" length="7" comment="Modified By" />
+        <column xsi:type="datetime" name="sync_date" nullable="false" on_update="false"/>
+        <column xsi:type="int" name="sync_status" nullable="true" comment="Sync Status" />
+        <column xsi:type="int" name="store_id" nullable="true" comment="Store ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="price_id" />
+        </constraint>
+    </table>
+    <!-- End -->
+    <!-- MST_Customer_Master-->
+    <table name="erp_customer_master" resource="default" engine="innodb" comment="MST Customer Master">
+        <column xsi:type="int" name="c_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Customer ID" />
+        <column xsi:type="varchar" name="vc_comp_code" nullable="false" length="2" comment="VC_COMP_CODE" />
+        <column xsi:type="varchar" name="nu_customer_code" nullable="false" length="20" comment="NU_CUSTOMER_CODE" />
+        <column xsi:type="varchar" name="vc_name_prefix" nullable="true" length="2" comment="VC_NAME_PREFIX" />
+        <column xsi:type="varchar" name="vc_first_name" nullable="false" length="30" comment="VC_FIRST_NAME" />
+        <column xsi:type="varchar" name="vc_last_name" nullable="true" length="30" comment="VC_LAST_NAME" />
+        <column xsi:type="varchar" name="vc_email" nullable="false" length="30" comment="VC_EMAIL" />
+        <column xsi:type="datetime" name="vc_dob" nullable="false" comment="VC_DOB" />
+        <column xsi:type="varchar" name="vc_gender" nullable="true" length="2" comment="VC_GENDER" />
+        <column xsi:type="varchar" name="vc_telephone" nullable="true" length="13" comment="VC_TELEPHONE" />
+        <column xsi:type="varchar" name="vc_bill_city" nullable="true" length="4" comment="VC_BILL_CITY" />
+        <column xsi:type="datetime" name="dt_mod_date" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="VC_DT_MOD_DATE"/>
+        <column xsi:type="varchar" name="vc_auth_code" nullable="true" length="2" comment="VC_AUTH_CODE"/>
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column name="modified_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column xsi:type="varchar" name="modified_by" nullable="false" length="7" comment="Modified By" />
+        <column xsi:type="datetime" name="sync_date" nullable="false" on_update="false"/>
+        <column xsi:type="int" name="sync_status" nullable="true" comment="Sync Status" />
+        <column xsi:type="int" name="store_id" nullable="true" comment="Store ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="c_id" />
+        </constraint>
+    </table>
+    <!--ERP address master-->
+    <table name="erp_address_master" resource="default" engine="innodb" comment="MST Address Master">
+        <column xsi:type="int" name="address_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Customer ID" />
+        <column xsi:type="varchar" name="magento_address_id" nullable="false" length="20" comment="MAGENTO_ADDRESS_ID" />
+        <column xsi:type="varchar" name="vc_comp_code" nullable="false" length="2" comment="VC_COMP_CODE" />
+        <column xsi:type="varchar" name="nu_customer_code" nullable="false" length="20" comment="NU_CUSTOMER_CODE" />
+        <column xsi:type="varchar" name="vc_customer_name" nullable="false" length="100" comment="VC_CUSTOMER_NAME" />
+        <column xsi:type="varchar" name="vc_title" nullable="false" length="100" comment="VC_TITLE" />
+        <column xsi:type="varchar" name="vc_billing_address_1" nullable="false" length="1000" comment="VC_BILLING_ADDRESS_1" />
+        <column xsi:type="varchar" name="vc_billing_address_2" nullable="false" length="1000" comment="VC_BILLING_ADDRESS_2" />
+        <column xsi:type="varchar" name="vc_billing_address_3" nullable="false" length="1000" comment="VC_BILLING_ADDRESS_3" />
+        <column xsi:type="varchar" name="vc_bill_city" nullable="true" length="4" comment="VC_BILL_CITY" />
+        <column xsi:type="varchar" name="vc_bill_state" nullable="true" length="4" comment="VC_BILL_STATE" />
+        <column xsi:type="varchar" name="vc_bill_country" nullable="true" length="4" comment="VC_BILL_COUNTRY" />
+        <column xsi:type="varchar" name="vc_bill_type" nullable="true" length="4" comment="VC_BILL_TYPE" />
+        <column xsi:type="varchar" name="vc_others" nullable="true" length="4" comment="VC_OTHERS" />
+        <column xsi:type="varchar" name="vc_mobile" nullable="true" length="13" comment="VC_MOBILE" />
+        <column xsi:type="varchar" name="vc_auth_code" nullable="true" length="2" comment="VC_AUTH_CODE"/>
+        <column xsi:type="datetime" name="dt_mod_date" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="VC_DT_MOD_DATE"/>
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column name="modified_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column xsi:type="varchar" name="modified_by" nullable="false" length="7" comment="Modified By" />
+        <column xsi:type="datetime" name="sync_date" nullable="false" on_update="false"/>
+        <column xsi:type="int" name="sync_status" nullable="true" comment="Sync Status" />
+        <column xsi:type="int" name="store_id" nullable="true" comment="Store ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="address_id" />
+        </constraint>
+    </table>
+    <!-- End -->
+    <!--ERP order master-->
+    <table name="erp_order_master" resource="default" engine="innodb" comment="MST Order Master">
+        <column xsi:type="int" name="erp_order_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Customer ID" />
+        <column xsi:type="varchar" name="vc_comp_code" nullable="false" length="2" comment="VC_COMP_CODE" />
+        <column xsi:type="varchar" name="vc_order_no" nullable="false" length="20" comment="VC_ORDER_NUMBER" />
+        <column xsi:type="datetime" name="dt_order_date" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="DT_ORDER_DATE" />
+        <column xsi:type="varchar" name="vc_product_code" nullable="false" length="1000" comment="PRODUCT NAME" />
+        <column xsi:type="float" name="nu_product_rate" nullable="false" comment="NU_PRODUCT_RATE" />
+        <column xsi:type="float" name="nu_tax_amount" nullable="false" comment="NU_TAX_RATE" />
+        <column xsi:type="float" name="nu_discount" nullable="false" comment="NU_DISCOUNT" />
+        <column xsi:type="varchar" name="nu_discount_description" nullable="false" length="200" comment="NU_DISCOUNT_DESCRIPTION" />
+        <column xsi:type="int" name="vc_item_barcode" nullable="false" comment="VC_ITEM_BARCODE" />
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column name="modified_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <column xsi:type="varchar" name="modified_by" nullable="false" length="7" comment="Modified By" />
+        <column xsi:type="datetime" name="sync_date" nullable="false" on_update="false"/>
+        <column xsi:type="int" name="sync_status" nullable="true" comment="Sync Status" />
+        <column xsi:type="int" name="store_id" nullable="true" comment="Store ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="erp_order_id" />
+        </constraint>
+    </table>
+    <!-- End -->
+	<!-- Database Setting-->
+	<table name="erp_configuration" resource="default" engine="innodb" comment="MST Price Master">
+        <column xsi:type="int" name="entity_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Price ID" />
+        <column xsi:type="varchar" name="db_host" nullable="false" length="255" comment="Database Host" />
+        <column xsi:type="varchar" name="database" nullable="false" length="20" comment="Database Name" />
+		<column xsi:type="varchar" name="user" nullable="false" length="20" comment="Database Username" />
+		<column xsi:type="varchar" name="password" nullable="false" length="20" comment="Database Password" />
+		<column xsi:type="varchar" name="sid" nullable="false" length="20" comment="SID" />
+		<column xsi:type="varchar" name="store_id" nullable="false" length="20" comment="Magento Store ID" />
+		<column xsi:type="varchar" name="status" nullable="false" length="10" comment="Status" />
+        <column xsi:type="varchar" name="port" nullable="false" length="10" comment="Port Number" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id" />
+        </constraint>
+    </table>
+    <!-- Loyality -->
+    <table name="erp_loyality" resource="default" engine="innodb" comment="MST Price Master">
+        <column xsi:type="int" name="loyality_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Loyality ID" />
+        <column xsi:type="varchar" name="c_id" nullable="false" length="255" comment="Customer ID" />
+        <column xsi:type="varchar" name="card" nullable="false" length="255" comment="Card" />
+        <column xsi:type="int" name="points" nullable="false"  default="150" comment="Points" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="loyality_id" />
+        </constraint>
+    </table>
+    <table name="sales_order">
+       <column xsi:type="varchar" name="loyality_card" nullable="true" comment="Loyality Card Number" />
+    </table>
+    <table name="quote">
+       <column xsi:type="varchar" name="loyality_card" nullable="true" comment="Loyality Card Number" />
+    </table>
+    <!-- End -->
+</schema>

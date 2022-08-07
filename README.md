@@ -5,7 +5,7 @@ This is a Magento 2 module for importing products
 ## Installation
 ### Composer
 ```
-    composer require catgento/m2-product-import
+    composer require the-tech-makers/m2-product-import
 ```
 ### ZIP file
 Download the module and unzip it under the folder app/code/Ttm/HelloPrint.  
